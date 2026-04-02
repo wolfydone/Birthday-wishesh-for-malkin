@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You 💌</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      color: #fff;
+      text-align: center;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    h1 {
+      margin-top: 50px;
+      font-size: 40px;
+    }
+
+    .letter {
+      width: 70%;
+      margin: auto;
+      margin-top: 30px;
+      font-size: 18px;
+      line-height: 1.7;
+      min-height: 300px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      background: white;
+      margin-left: 3px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+
+    /* Glow background */
+    .glow {
+      position: fixed;
+      width: 200px;
+      height: 200px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: float 10s infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0px); }
+      to { transform: translateY(-100px); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Just for You 💖</h1>
+
+  <div class="letter" id="text"></div>
+
+  <script>
+    const message = [
+      "It all started with a simple request on 19 March 2026…",
+      "",
+      "And now look at us — 1.5 months together.",
+      "",
+      "It may seem like a short time to others, but for me… every moment with you has been special, memorable, and full of happiness.",
+      "",
+      "We shared our thoughts, our future plans, our goals, our feelings… and even our daily routines with each other.",
+      "",
+      "And honestly, those small things meant the most to me.",
+      "",
+      "I truly loved every moment I spent with you.",
+      "",
+      "And I promise… if you stay by my side, we’ll create even more beautiful memories, spend more time together, and keep smiling like this for a long, long time.",
+      "",
+      "Today is your special day… and I just want to say — you deserve all the happiness in the world.",
+      "",
+      "Happy Birthday once again, maalkin😁 💖",
+      "",
+      "— By your proud upper class naukerrr 😎🫡"
+    ];
+
+    let i = 0, j = 0, current = "";
+    const speed = 30;
+
+    function type() {
+      if (i < message.length) {
+        if (j < message[i].length) {
+          current += message[i].charAt(j);
+          document.getElementById("text").innerHTML = current + "<span class='cursor'></span>";
+          j++;
+          setTimeout(type, speed);
+        } else {
+          current += "<br><br>";
+          j = 0;
+          i++;
+          setTimeout(type, 400);
+        }
+      } else {
+        document.getElementById("text").innerHTML = current;
+      }
+    }
+
+    type();
+
+    // Glow effect
+    for (let i = 0; i < 3; i++) {
+      const glow = document.createElement("div");
+      glow.classList.add("glow");
+
+      glow.style.left = Math.random() * 100 + "vw";
+      glow.style.top = Math.random() * 100 + "vh";
+
+      document.body.appendChild(glow);
+    }
+  </script>
+
+</body>
+</html>
