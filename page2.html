@@ -16,14 +16,16 @@
     }
 
     h1 {
-      font-size: 50px;
+      padding: 0 10px;
+      font-size: 8vw;
       margin-top: 20%;
       opacity: 0;
       transition: 1s;
     }
 
     p {
-      font-size: 20px;
+      padding: 0 20px;
+      font-size: 5vw;
       opacity: 0;
       transition: 1s;
     }
@@ -31,7 +33,7 @@
     button {
       margin-top: 30px;
       padding: 15px 30px;
-      font-size: 18px;
+      font-size: 5vw;
       border-radius: 30px;
       border: none;
       background: white;
@@ -95,6 +97,11 @@
         opacity: 0;
       }
     }
+    @media (min-width: 768px) {
+  h1 { font-size: 50px; }
+  p { font-size: 22px; }
+  button { font-size: 18px; }
+}
   </style>
 </head>
 
