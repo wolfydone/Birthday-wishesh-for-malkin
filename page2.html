@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Surprise 🎉</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+      text-align: center;
+      font-family: 'Comic Sans MS', cursive;
+      color: white;
+    }
+
+    h1 {
+      font-size: 50px;
+      margin-top: 20%;
+      opacity: 0;
+      transition: 1s;
+    }
+
+    p {
+      font-size: 20px;
+      opacity: 0;
+      transition: 1s;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 30px;
+      border: none;
+      background: white;
+      color: black;
+      cursor: pointer;
+      display: none;
+    }
+
+    button:hover {
+      background: pink;
+    }
+
+    /* HEART BURST */
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: red;
+      transform: rotate(45deg);
+      top: 50%;
+      left: 50%;
+      animation: burst 1.5s ease-out forwards;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -7px; }
+    .heart::after { left: -7px; }
+
+    @keyframes burst {
+      0% {
+        transform: translate(-50%, -50%) scale(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(2) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    /* CONFETTI */
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      top: -10px;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 id="title">HAPPY BIRTHDAY MAALKIN 😁🎉</h1>
+  <p id="msg">You deserve all the happiness in the world 💖</p>
+  <button id="nextBtn" onclick="goNext()">Read Something Special 💌</button>
+
+  <script>
+    // Show text
+    setTimeout(() => {
+      title.style.opacity = "1";
+      msg.style.opacity = "1";
+    }, 1200);
+
+    // HEART BURST (center explosion)
+    function createHearts() {
+      for (let i = 0; i < 25; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+
+        const x = (Math.random() - 0.5) * 400 + "px";
+        const y = (Math.random() - 0.5) * 400 + "px";
+
+        heart.style.setProperty('--x', x);
+        heart.style.setProperty('--y', y);
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 1500);
+      }
+    }
+
+    // CONFETTI (smooth fall)
+    function createConfetti() {
+      for (let i = 0; i < 80; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.background =
+          ["red","yellow","blue","pink","white"][Math.floor(Math.random()*5)];
+
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+
+    // Trigger animations
+    setTimeout(createHearts, 1200);
+    setTimeout(createConfetti, 1600);
+
+    // Show button
+    setTimeout(() => {
+      nextBtn.style.display = "inline-block";
+    }, 3000);
+
+    function goNext() {
+      window.location.href = "page3.html";
+    }
+  </script>
+
+</body>
+</html>
